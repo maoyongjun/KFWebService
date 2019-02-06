@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
- <mapper namespace="org.foxconn.tencent.sendComponent.dao.OsMsgDao">
- 
- 	<select id="findAll"  parameterType="map" statementType="CALLABLE" resultType="org.foxconn.tencent.sendComponent.entity.parseTestResult.OsTestResultJsonModel">
+<mapper namespace="org.tiandy.KFWebService.sendMsg.dao.OsMsgDao">
+
+	<select id="findAll" parameterType="map" statementType="CALLABLE"
+		resultType="org.tiandy.KFWebService.sendMsg.entity.parseTestResult.OsTestResultJsonModel">
  		<![CDATA[
 		    {call efoxsfcgetTencentShipoutExcelMsg
 		     (#{ssn,mode=IN,jdbcType=VARCHAR},
@@ -12,68 +13,78 @@
 		     )
 		     }
 		]]>
- 	</select>
- 	
- 	<select id="getTestResult"  statementType="CALLABLE" resultType="org.foxconn.tencent.sendComponent.entity.parseTestResult.OsTestResultJsonModel">
+	</select>
+
+	<select id="getTestResult" statementType="CALLABLE"
+		resultType="org.tiandy.KFWebService.sendMsg.entity.parseTestResult.OsTestResultJsonModel">
  		<![CDATA[
 		    {call eFoxSFCMarkSNParsed
 		     ()
 		     }
 		]]>
- 	</select>
- 	
- 	<insert id="addComponent" parameterType="org.foxconn.tencent.sendComponent.entity.parseTestResult.OsTestComponent">
- 		INSERT INTO efoxSFCTencentComponent(ID,SN,PN,FW,CTYPE,PARENTID,lasteditdt) values (#{id},#{sn},#{pn},#{fw},#{type},#{parentId},#{lasteditdt})
- 	</insert>
- 	
- 	<select id="getSendComponent"  statementType="CALLABLE" resultType="org.foxconn.tencent.sendComponent.entity.efoxResult.ServerComponent">
+	</select>
+
+	<insert id="addComponent"
+		parameterType="org.tiandy.KFWebService.sendMsg.entity.parseTestResult.OsTestComponent">
+		INSERT INTO efoxSFCTencentComponent(ID,SN,PN,FW,CTYPE,PARENTID,lasteditdt)
+		values (#{id},#{sn},#{pn},#{fw},#{type},#{parentId},#{lasteditdt})
+	</insert>
+
+	<select id="getSendComponent" statementType="CALLABLE"
+		resultType="org.tiandy.KFWebService.sendMsg.entity.efoxResult.ServerComponent">
  		<![CDATA[
 		    {call efoxsfcgetTencentSendComponent
 		     (#{pallents})
 		     }
 		]]>
- 	</select>
- 	
- 	 <select id="getOdmComponent"  statementType="CALLABLE" resultType="org.foxconn.tencent.sendComponent.entity.efoxResult.OdmPartComponent">
+	</select>
+
+	<select id="getOdmComponent" statementType="CALLABLE"
+		resultType="org.tiandy.KFWebService.sendMsg.entity.efoxResult.OdmPartComponent">
  		<![CDATA[
 		    {call efoxsfcgetTencentSendOdmPart
 		     (#{pallents})
 		     }
 		]]>
- 	</select>
- 	
- 	<update id="updateMMprocomponent" parameterType="org.foxconn.tencent.sendComponent.entity.efoxParno.MMprodmaster">
- 		update mmprodmaster set manufacturerpn = #{manufacturerpn} where partno =#{partno}
- 		
- 	</update>
- 	
- 	<select id="findSkunos" resultType="org.foxconn.tencent.sendComponent.entity.efoxParno.MMprodmaster">
-	 	
-<!-- 	 	select	DISTINCT A.skuno as partno -->
-<!-- 		from	mfworkorder A,mfworkdetail B   -->
-<!-- 		WHERE	routeid  LIKE 'LXTe%'  -->
-<!-- 				AND A.workorderno = B.workorderno -->
-<!-- 				UNION -->
-		select	DISTINCT b.partno as partno
-		from	mfworkorder A,mfworkdetail B  
-		WHERE	routeid  LIKE 'LXTe%' 
-				AND A.workorderno = B.workorderno
+	</select>
 
- 	</select>
- 	<insert id="addLog" parameterType="org.foxconn.tencent.sendComponent.entity.log.EfoxLogModel">
- 		INSERT INTO efoxSFCTencentSendLog(logDate,apiname,msgId,msgType,data) 
- 		VALUES(
- 		#{logDate},#{apiname},#{msgId},#{msgType},#{data}
- 		)
- 	</insert>
- 	
- 	<select id="getSendPallents"  statementType="CALLABLE" parameterType="string" resultType="string">
+	<update id="updateMMprocomponent"
+		parameterType="org.tiandy.KFWebService.sendMsg.entity.efoxParno.MMprodmaster">
+		update mmprodmaster set manufacturerpn = #{manufacturerpn} where partno
+		=#{partno}
+
+	</update>
+
+	<select id="findSkunos"
+		resultType="org.tiandy.KFWebService.sendMsg.entity.efoxParno.MMprodmaster">
+
+		<!-- select DISTINCT A.skuno as partno -->
+		<!-- from mfworkorder A,mfworkdetail B -->
+		<!-- WHERE routeid LIKE 'LXTe%' -->
+		<!-- AND A.workorderno = B.workorderno -->
+		<!-- UNION -->
+		select DISTINCT b.partno as partno
+		from mfworkorder A,mfworkdetail B
+		WHERE routeid LIKE 'LXTe%'
+		AND A.workorderno = B.workorderno
+
+	</select>
+	<insert id="addLog"
+		parameterType="org.tiandy.KFWebService.sendMsg.entity.log.EfoxLogModel">
+		INSERT INTO efoxSFCTencentSendLog(logDate,apiname,msgId,msgType,data)
+		VALUES(
+		#{logDate},#{apiname},#{msgId},#{msgType},#{data}
+		)
+	</insert>
+
+	<select id="getSendPallents" statementType="CALLABLE"
+		parameterType="string" resultType="string">
  		<![CDATA[
 		    {call efoxsfcgetTencentSendPallents
 		     (#{transtype})
 		     }
 		]]>
- 	</select>
- 	
- </mapper>        
+	</select>
+
+</mapper>        
  

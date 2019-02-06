@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.foxconn.tencentSendComponent</groupId>
-	<artifactId>tencentSendComponent</artifactId>
+	<groupId>com.tiandy.KFWebService</groupId>
+	<artifactId>KFWebService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<repositories>
 		<repository>
 			<id>mit</id>
@@ -28,9 +28,12 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<java.version>1.6</java.version>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<tomcat.version>7.0.59</tomcat.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,6 +42,22 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-legacy</artifactId>
+			<version>1.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -84,9 +103,9 @@
 		</dependency>
 		<!-- sap组件 -->
 		<dependency>
-		    <groupId>com.sap.conn.jco</groupId>
-		    <artifactId>sapjco3</artifactId>
-		    <version>3.0.14</version>
+			<groupId>com.sap.conn.jco</groupId>
+			<artifactId>sapjco3</artifactId>
+			<version>3.0.14</version>
 		</dependency>
 
 		<dependency>
@@ -98,7 +117,7 @@
 	</dependencies>
 
 	<build>
-		<!-- <finalName>os</finalName> -->
+		<finalName>KFWebService</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -106,5 +125,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 </project>
