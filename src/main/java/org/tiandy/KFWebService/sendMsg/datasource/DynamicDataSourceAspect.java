@@ -21,7 +21,7 @@ public class DynamicDataSourceAspect {
 
     private final String[] QUERY_PREFIX = {"getOdmComponent"};
 
-    @Pointcut("execution(* org.foxconn.tencent.sendComponent.dao.*.*(..))")
+    @Pointcut("execution(* org.tiandy.KFWebService.sendMsg.dao.*.*(..))")
     public void daoAspect() {
     }
 

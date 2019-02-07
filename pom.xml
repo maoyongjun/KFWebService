@@ -92,20 +92,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-excelant</artifactId>
-			<version>3.9</version>
-		</dependency>
-		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.1.10</version>
-		</dependency>
-		<!-- sap组件 -->
-		<dependency>
-			<groupId>com.sap.conn.jco</groupId>
-			<artifactId>sapjco3</artifactId>
-			<version>3.0.14</version>
 		</dependency>
 
 		<dependency>
@@ -113,7 +102,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
+		
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>1.8.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>

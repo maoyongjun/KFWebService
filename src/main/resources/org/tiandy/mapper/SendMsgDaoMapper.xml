@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.tiandy.KFWebService.sendMsg.dao.SendMsgDao">
+
+	<select id="findAll" parameterType="map" resultType="org.tiandy.KFWebService.sendMsg.entity.msg.TbUser">
+ 		SELECT * FROM tb_user 
+	</select>
+
+</mapper>        
+ 
