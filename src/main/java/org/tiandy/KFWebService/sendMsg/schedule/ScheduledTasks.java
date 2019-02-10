@@ -9,20 +9,24 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.tiandy.KFWebService.sendMsg.config.B2BConfig;
 import org.tiandy.KFWebService.sendMsg.dao.SendMsgDao;
 import org.tiandy.KFWebService.sendMsg.entity.msg.TbUser;
 
 @Component
 @Configurable
 @EnableScheduling
+@PropertySource("classpath:/config.properties")
 public class ScheduledTasks{
 	@Resource
 	SendMsgDao dao;
-
-    @Scheduled(fixedRate = 1000 * 30)
+	
+    @Scheduled(fixedRateString =  "${fixedRate}")
     public void reportCurrentTime(){
     	Map<String,Object> map = new HashMap<String,Object>();
     	List<TbUser> findAll = dao.findAll(map);
@@ -33,7 +37,7 @@ public class ScheduledTasks{
     }
 
     //每1分钟执行一次
-    @Scheduled(cron = "0 */1 *  * * * ")
+    @Scheduled(cron = "${cron}")
     public void reportCurrentByCron(){
         System.out.println ("Scheduling Tasks Examples By Cron: The time is now " + dateFormat ().format (new Date ()));
     }
